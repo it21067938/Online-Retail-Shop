@@ -53,6 +53,18 @@ const updateProduct = async (req, res) => {
   }
 };
 
+const getDetailsById = async(req, res) => {
+  let productId = req.params.id;
+  try {
+    const product = await ProductsModel.findById(productId);
+    res.json({success: true, data: product})
+  } catch (error) {
+    console.log(error);
+    res.json({success: false, message: "Error in Data Loading"});
+    
+  }
+}
+
 const removeProduct = async (req, res) => {
   try {
     let productId = req.params.id;
@@ -64,4 +76,4 @@ const removeProduct = async (req, res) => {
   }
 };
 
-export { addProduct, getProducts, removeProduct, updateProduct };
+export { addProduct, getProducts, removeProduct, updateProduct, getDetailsById };

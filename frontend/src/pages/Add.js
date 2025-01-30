@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { toast } from "react-toastify";
 
@@ -14,41 +14,84 @@ const Home = () => {
   const onChangeHandler = (event) => {
     const name = event.target.name;
     const value = event.target.value;
-    setData((data) => ({ ...data, [name]: value }));
+    setData((prevData) => ({ ...prevData, [name]: value }));
   };
 
   const onSubmitHandler = async (e) => {
     e.preventDefault();
-    const formData = new FormData();
-    formData.append("name", data.name);
-    formData.append("description", data.description);
-    formData.append("price", Number(data.price));
-    formData.append("image", data.image);
-    formData.append("category", data.category);
     try {
-      const response = await axios.post(
-        "http://localhost:3001/product/add",
-        formData
-      );
-      console.log(response);
+      const response = data._id
+        ? await axios.put(`http://localhost:3001/product/edit/${data._id}`, data)
+        : await axios.post("http://localhost:3001/product/add", data);
+  
       if (response.data.success) {
-        toast.success("hareem");
+        toast.success(`Product ${data._id ? "updated" : "added"} successfully!`);
       } else {
-        console.log(response.data.message);
-        toast.error("Aiooo");
+        toast.error(response.data.message || `Failed to ${data._id ? "update" : "add"} product.`);
       }
-
     } catch (error) {
-      console.error(error.message);
-      toast.error("fail");
+      console.error(error);
+      toast.error(`An error occurred while ${data._id ? "updating" : "adding"} the product.`);
     }
+  };
+  
 
+  const [products, setProducts] = useState([]);
+  const fetchData = async () => {
+    try {
+      const allData = await axios.get("http://localhost:3001/product/get");
+
+      if (allData.data.success) {
+        setProducts(allData.data.data);
+      } else {
+        toast.error("error atho");
+      }
+    } catch (error) {
+      console.log(error);
+      toast.error(error.response.data.message);
+    }
+  };
+
+  useEffect(() => {
+    fetchData();
+  }, []);
+
+  const deleteProduct = async (productId) => {
+    try {
+      const response = await axios.delete(
+        `http://localhost:3001/product/remove/${productId}`
+      );
+      if (response.data.success) {
+        toast.success("Deleted product successfully");
+      } else {
+        toast.error("Error in removing product");
+      }
+    } catch (error) {
+      console.log(error);
+      toast.error("Delete operation failed");
+    }
+  };
+
+  const getProduct = async (productId) => {
+    try {
+      const product = await axios.get(
+        `http://localhost:3001/product/get/${productId}`
+      );
+      if (!product.data.success) {
+        toast.error("Error");
+      }
+      setData(product.data.data);
+      console.log(product);
+    } catch (error) {
+      console.log(error);
+      toast.error(error.response.data.message);
+    }
   };
 
   return (
-    <div>
+    <div >
       <form onSubmit={onSubmitHandler}>
-        <h1>Input Product</h1>
+        {data._id ? <h1>Update Product</h1> : <h1>Input Product</h1>}
         <input
           type="text"
           onChange={onChangeHandler}
@@ -84,8 +127,45 @@ const Home = () => {
           name="category"
           placeholder="Enter your category"
         />
-        <button type="submit">Submit</button>
+        {data._id ? (
+          <button type="submit">Update</button>
+        ) : (
+          <button type="submit">Submit</button>
+        )}
       </form>
+      <br />
+      <h1>All Data In the DB</h1>
+      <table>
+        <thead>
+          <tr>
+            <th>Name</th>
+            <th>Description</th>
+            <th>Price</th>
+            <th>Image</th>
+            <th>Category</th>
+            <th>Delete</th>
+            <th>Edit</th>
+          </tr>
+        </thead>
+        <tbody>
+          {products.map((item, index) => (
+            <tr key={index}>
+              <td>{item.name}</td>
+              <td>{item.description}</td>
+              <td>{item.image}</td>
+              <td>{item.category}</td>
+              <td>{item.price}</td>
+              <td
+                onClick={() => deleteProduct(item._id)}
+                style={{ color: "red" }}
+              >
+                x
+              </td>
+              <td onClick={() => getProduct(item._id)}>edit</td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
     </div>
   );
 };
