@@ -1,15 +1,13 @@
 import profile_picture from "./profile-picture.png"
 import logo from './logo.png'
-import one from './1.jpg'
-import two from './2.jpg'
-import three from './3.jpeg'
+import homeA from './homeA.jpg'
+import homeB from './homeB.jpg'
 
 const assets = {
     profile_picture,
     logo,
-    one,
-    two,
-    three
+    homeA,
+    homeB
 }
 
 export default assets;

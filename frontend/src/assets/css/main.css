@@ -216,14 +216,121 @@ a {
     border: none;
 }
 
+.contact-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    padding: 50px 100px;
+    gap: 60px;
+}
+
+.contact-container-left {
+    flex: 1 1 15%;
+    min-width: 280px;
+    background-color: #fff;
+    padding: 20px;
+    box-shadow: 0px 8px 8px rgb(231, 229, 229);
+    margin-bottom: 20px;
+    border: none;
+    height: 100%;
+}
+
+.contact-container-right {
+    flex: 1 1 48%;
+    min-width: 280px;
+}
+
+.contact-container-left h2,
+.contact-container-left p {
+    margin-bottom: 20px;
+}
+
+.contact-container-left p {
+    line-height: 23px;
+    color: #999797;
+}
+
+.contact-container h3,
+h2 {
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    font-weight: 600;
+}
+.contact-container-right textarea{
+    height: 300px;
+}
+
+.contact-location {
+    display: flex;
+    align-items: start;
+    gap: 30px;
+    margin-bottom: 20px;
+    margin-left: 20px;
+}
+
+.contact-location hr {
+    width: 250px;
+}
+
+.contact-container-right div {
+    display: flex;
+    gap: 20px;
+}
+
+.contact-container-right .message-subject {
+    width: 97.5%;
+}
+
+.contact-container-right input,
+.contact-container-right textarea {
+    border: 1px solid #ffba00;
+    padding: 13px 15px ;
+    margin-bottom: 10px;
+    font-size: 1rem;
+    width: 900px;
+    resize: vertical;
+}
+
+
+.contact-container-right button {
+    padding: 10px 20px;
+    background-color: #ffbb00;
+    color: white;
+    border: none;
+    cursor: pointer;
+    font-size: 1rem;
+}
+
+.contact-container-right button:hover {
+    background-color: #ffd633;
+}
+
+/* Responsive Design for smaller screens */
+@media (max-width: 768px) {
+    .contact-container {
+        padding: 20px;
+    }
+
+    .contact-container-left,
+    .contact-container-right {
+        flex: 1 1 100%;
+        /* Stack the sections vertically */
+        min-width: 100%;
+    }
+
+    .contact-container-left {
+        padding-bottom: 20px;
+        /* Add padding for separation */
+    }
+}
+
 
 
 /* Footer Container */
 .footer {
     background-color: #222;
     color: white;
-    padding: 40px 20px 20px;
-    text-align: center;
+    padding: 40px 100px 20px;
+    text-align: left;
     font-size: 1rem;
     display: flex;
     flex-direction: column;
@@ -231,22 +338,51 @@ a {
     position: relative;
 }
 
-/* Footer Content - Sections */
 .footer-content {
     display: flex;
     justify-content: space-between;
     flex-wrap: wrap;
 }
 
-/* Footer Sections */
 .footer-section {
     margin-bottom: 20px;
-    flex: 1 1 30%;
+    flex: 1 1 25%;
     min-width: 200px;
 }
 
-.footer-section span{
+.footer-section button {
+    padding: 11px 10px;
+    background-color: #ffbb00;
+    font-weight: 800;
+    color: white;
+    border-radius: 0 5px 5px 0;
+    border: none;
+}
+
+.footer-section button:hover {
+    background-color: #ffcc00;
+    transition: 1s;
+}
+
+.footer-section input[type=email] {
+    padding: 4px 8px;
+    width: 65%;
+    height: 30px;
+    border-radius: 5px 0 0 5px;
+}
+
+.footer-section input[type=email]:focus {
+    outline: none;
+    border-color: #ffcc00;
+}
+
+.footer-section span {
     color: #ffcc00;
+}
+
+.footer-section p span {
+    color: #ffff;
+    font-weight: 800;
 }
 
 .footer-section h3 {
@@ -254,12 +390,14 @@ a {
     margin-bottom: 10px;
 }
 
-.footer-section p {
+.footer-section .email {
     font-size: 0.9rem;
+    font-family: 'Times New Roman', Times, serif;
 }
 
 /* Social Media Links */
-.social-icons a {
+.social-icons a,
+.footer-pages {
     display: block;
     color: white;
     text-decoration: none;
@@ -279,6 +417,16 @@ a {
     font-size: 0.9rem;
 }
 
+.footer-bottom hr {
+    border: none;
+    border-top: 1px solid gray;
+    margin: 20px 0;
+}
+
+.footer-bottom span {
+    color: #ffba00;
+}
+
 .footer-bottom p {
     margin: 0;
 }
@@ -295,27 +443,3 @@ a {
         text-align: center;
     }
 }
-
-
-.slideshow-container {
-    position: relative;
-    max-width: 100%;
-    margin: auto;
-  }
-  
-  .mySlides {
-    display: none;
-    position: relative;
-    width: 100%;
-    transition: opacity 2s ease-in-out;
-  }
-  
-  .mySlides.active {
-    display: block;
-  }
-  
-  img {
-    width: 100%;
-  }
-  
-  
