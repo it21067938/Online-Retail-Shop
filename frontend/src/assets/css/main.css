@@ -324,6 +324,31 @@ h2 {
 }
 
 
+/* Daily Deals  */
+.deals{
+    padding: 10px 100px 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    position: relative;
+}
+
+.deals-category{
+    display: flex;
+    gap: 100px;
+}
+
+.deals-dropdown{
+    padding: 5px 150px 5px 15px;
+    border-radius: 15px;
+    justify-content: center;
+}
+
+.deals-dropdown:hover{
+    
+}
+
+
 
 /* Footer Container */
 .footer {

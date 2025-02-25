@@ -24,13 +24,13 @@ const NavBar = () => {
           </a>
           {dropdownOpen && (
             <div className="dropdown-menu">
-               <a href="#electronics">Electronics</a>
-               <a href="#sports">Sports</a>
-               <a href="#home-kitchen">Home & Kitchen</a>
+               <a href="/electronics">Electronics</a>
+               <a href="/sports">Sports</a>
+               <a href="/home&kitchen">Home & Kitchen</a>
             </div>
           )}
         </div>
-        <a href="/services">Services</a>
+        <a href="/deals">Daily Deals</a>
         <a href="/contact">Contact</a>
       </div>
 
