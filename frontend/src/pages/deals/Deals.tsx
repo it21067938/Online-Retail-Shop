@@ -13,7 +13,7 @@ function Deals() {
           <br />
           <div className="deals-category">
             <select className="deals-dropdown">
-              <option value="all">All Categories</option>
+              <option value="all">All</option>
               <option value="electronics">Electronics</option>
               <option value="home&kitchen">Home & Kitchen</option>
               <option value="sports">Sports</option>

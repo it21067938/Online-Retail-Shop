@@ -204,6 +204,15 @@ a {
 }
 
 
+/*Home*/
+.home-content img{
+    background-size: contain;
+    height: 80vh;
+    padding: 20px 100px 18px;
+    position: relative;
+}
+
+
 
 /* Contact page Style */
 .contact {
@@ -327,7 +336,7 @@ h2 {
 
 /* Deals Container */
 .deals {
-    padding: 25px 100px 18px;
+    padding: 0 100px 18px;
 }
 
 .deals-header {
@@ -335,7 +344,7 @@ h2 {
     flex-direction: column;
     align-items: center;
     text-align: center;
-    margin-bottom: 10px;
+    margin-bottom: 40px;
 }
 
 .deals-heading {
